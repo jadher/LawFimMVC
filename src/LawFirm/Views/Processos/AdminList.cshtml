@@ -1,0 +1,53 @@
+@model IEnumerable<LawFirm.Models.Processo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Todos os Processos dos Usuários</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroUnico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroUnico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProcessoId">Edit</a> |
+                <a asp-action="DetailsAdmin" asp-route-id="@item.ProcessoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProcessoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

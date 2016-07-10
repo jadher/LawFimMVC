@@ -1,0 +1,59 @@
+@model LawFirm.Models.Processo
+
+@{
+    ViewData["Title"] = "Edit";
+    ViewBag.UserList = new SelectList(ViewBag.UserList, "Id", "RealName");
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Processo</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ProcessoId" />
+        <div class="form-group">
+            <label asp-for="Comment" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NumeroUnico" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NumeroUnico" class="form-control" />
+                <span asp-validation-for="NumeroUnico" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserId" class="col-md-2 control-label">Selecione o usuário:</label>
+            <div class="col-md-10">
+                @*@Html.DropDownListFor(model => model.UserId, (SelectList)ViewBag.UserList)*@
+                <select asp-for="UserId" asp-items="ViewBag.UserList"></select>
+                <span asp-validation-for="UserId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

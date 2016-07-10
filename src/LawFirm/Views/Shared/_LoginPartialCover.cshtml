@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using LawFirm.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+    </li>
+    <li class="navbar-right">
+        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" >
+            <button type="submit" class="btn btn-default">Log off</button>
+        </form>
+    </li>
+}
+else
+{
+
+        @*<li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>*@
+        <li><a href="#" data-toggle="modal" data-target="#registerModal">Register</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#loginModal">Log in</a></li>
+        @*<li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>*@
+}
